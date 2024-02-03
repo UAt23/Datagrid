@@ -53,5 +53,19 @@
 </div>
 
 <ng-template #modalContent>
-   <p>anam</p>
+   <form [formGroup]="modalForm" class="modal-content-wrapper">
+      <div class="filed-wrapper">
+         <p class="field-title">Sosyal Medya Linki</p>
+         <input formControlName="link" type="text" class="field-input">
+      </div>
+      <div class="filed-wrapper">
+         <p class="field-title">Sosyal Medya Adı</p>
+         <input formControlName="name" type="text" class="field-input">
+      </div>
+      <div class="filed-wrapper">
+         <p class="field-title">Açıklama</p>
+         <input formControlName="description" type="text" class="field-input">
+      </div>
+
+   </form>
 </ng-template>

@@ -1,5 +1,6 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
@@ -7,6 +8,7 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
+  @Input() form!: FormGroup;
   @Input() contentTemplate!: TemplateRef<any>;
   @Input() displayCloseIcon: boolean = true;
   @Input() displayHeader: boolean = false;
@@ -16,9 +18,26 @@ export class ModalComponent {
   @Input() width: string = 'auto';
   @Input() height: string = 'auto';
 
+  errorVisible = false;
+  emptyFormFields = {
+    link: '',
+    name: '',
+    description: ''
+  }
+
   constructor(private modalService: ModalService) {}
 
   closeModal() {
+    this.form.setValue(this.emptyFormFields)
     this.modalService.closeModal();
+  }
+
+  onOkayClicked() {
+    if (this.form.valid) {
+      this.errorVisible = false;
+    } else {
+      this.errorVisible = true;
+    }
+    this.modalService.triggerSubmit();
   }
 }

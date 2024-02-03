@@ -14,13 +14,17 @@ export class ModalService {
 
   modalClosed$ = this.modalClosedSubject.asObservable();
 
+  private submitSubject = new Subject<void>();
+
+  submit$ = this.submitSubject.asObservable();
+
   constructor(private overlay: Overlay, private injector: Injector) {}
 
   openModal(config: ModalConfig) {
     this.closeModal(); // Close any existing modal
   
     const overlayConfig: OverlayConfig = {
-      hasBackdrop: true,
+      hasBackdrop: config.closeOnBackdropClick !== false, // Close on backdrop click unless explicitly set to false
       backdropClass: 'modal-backdrop',
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
     };
@@ -29,6 +33,7 @@ export class ModalService {
     const portal = new ComponentPortal(ModalComponent, null, this.createInjector(config.contentTemplate));
   
     const componentRef = this.overlayRef.attach(portal);
+    componentRef.instance.form = config.form;
     componentRef.instance.contentTemplate = config.contentTemplate;
     componentRef.instance.title = config.title || 'Default Title';
     componentRef.instance.closeButton = config.closeButton || 'Close';
@@ -36,7 +41,11 @@ export class ModalService {
     componentRef.instance.width = config.width || 'auto';
     componentRef.instance.height = config.height || 'auto';
   
-    this.overlayRef.backdropClick().subscribe(() => this.closeModal());
+    this.overlayRef.backdropClick().subscribe(() => {
+      if (config.closeOnBackdropClick !== false) {
+        this.closeModal();
+      }
+    });
   }
 
   closeModal() {
@@ -44,6 +53,10 @@ export class ModalService {
       this.overlayRef.detach();
       this.modalClosedSubject.next();
     }
+  }
+
+  triggerSubmit() {
+    this.submitSubject.next();
   }
 
   private createInjector(contentTemplate: TemplateRef<any>): Injector {

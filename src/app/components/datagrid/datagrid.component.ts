@@ -3,7 +3,7 @@ import { TableData } from '../../models/table-data.model';
 import { TableService } from '../../services/table.service';
 import { faCaretDown, faCaretUp, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { ModalService } from '../../shared/services/modal.service';
@@ -31,7 +31,11 @@ export class DatagridComponent implements OnInit {
 
   private destroy$ = new Subject<void>();
   myForm!: FormGroup;
-
+  modalForm: FormGroup = this.fb.group({
+    link: ['', Validators.required],
+    name: ['', Validators.required],
+    description: ['', Validators.required]
+  });
 
   constructor(
     private tableService: TableService,
@@ -45,7 +49,8 @@ export class DatagridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.displayedData = [...this.tableData];
+    this.updateDisplayedData();
+
     this.myForm.get('searchText')?.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -93,15 +98,43 @@ export class DatagridComponent implements OnInit {
 
   openModal(contentTemplate: TemplateRef<any>) {
     const modalConfig: ModalConfig = {
+      form: this.modalForm,
       contentTemplate,
       title: '',
       closeButton: 'Vazgeç',
       openButton: 'Kaydet',
       width: '488px',
       height: '406px',
+      closeOnBackdropClick: false
     };
+    this.modalService.submit$.subscribe(() => {
+      this.onSubmit();
+    });
     this.modalService.openModal(modalConfig);
   }
+
+  onSubmit() {
+    if (this.modalForm.valid) {
+      const formValues = this.modalForm.value;
+      console.log('Form Values:', formValues);
+      this.modalService.closeModal();
+    } 
+  }
+
+  addRow() {
+    const newRow: TableData = {
+      'Sosyal Medya Linki': this.modalForm.value['link'],
+      'Sosyal Medya Adı': this.modalForm.value['name'],
+      'Açıklama': this.modalForm.value['description']
+    };
+    this.tableData = [...this.tableData, newRow];
+    this.updateDisplayedData();
+  }
+
+  updateDisplayedData() {
+    this.displayedData = [...this.tableData]
+  }
+
 
   ngOnDestroy() {
     this.destroy$.next();

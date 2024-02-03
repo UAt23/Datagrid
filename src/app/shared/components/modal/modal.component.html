@@ -6,10 +6,11 @@
       <h2>{{ title }}</h2>
    </div>
    <div class="modal-body">
+      <small class="error" *ngIf="errorVisible">Lütfen tüm alanları doldurunuz.</small>
       <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
    </div>
    <div class="modal-footer">
       <button class="button close" (click)="closeModal()">{{ closeButton }}</button>
-      <button class="button okay" (click)="closeModal()">{{ okayButton }}</button>
+      <button class="button okay" (click)="onOkayClicked()">{{ okayButton }}</button>
    </div>
 </div>

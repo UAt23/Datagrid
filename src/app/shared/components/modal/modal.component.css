@@ -53,3 +53,9 @@
    background: #744BFC;
    color: white;
 }
+
+.error {
+   display: flex;
+   justify-content: center;
+   color: red;
+}
