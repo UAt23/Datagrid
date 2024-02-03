@@ -1,0 +1,15 @@
+<div class="modal" [style.width]="width" [style.height]="height">
+   <div *ngIf="displayCloseIcon" class="close-icon" (click)="closeModal()">
+      <img src="../../../../assets/svg/Close_round.svg" alt="Close Button for Modal Window">
+   </div>
+   <div *ngIf="displayHeader" class="modal-header">
+      <h2>{{ title }}</h2>
+   </div>
+   <div class="modal-body">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+   </div>
+   <div class="modal-footer">
+      <button class="button close" (click)="closeModal()">{{ closeButton }}</button>
+      <button class="button okay" (click)="closeModal()">{{ okayButton }}</button>
+   </div>
+</div>

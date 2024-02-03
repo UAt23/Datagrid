@@ -11,6 +11,7 @@ import { DatagridComponent } from './components/datagrid/datagrid.component';
 import { DxDataGridModule } from 'devextreme-angular';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from './shared/shared.module';
 
 const COMPONENTS = [NavbarComponent, DatagridComponent];
 const SERVICES = [];
@@ -25,8 +26,9 @@ const SERVICES = [];
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    SharedModule,
     FontAwesomeModule,
-    DxDataGridModule
+    DxDataGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

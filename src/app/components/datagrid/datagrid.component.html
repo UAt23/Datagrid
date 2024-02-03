@@ -11,7 +11,7 @@
             <fa-icon class="filter-icon" [icon]="faFilter"></fa-icon>
          </div>
       </div>
-      <div class="add-button" (click)="openModal()">
+      <div class="add-button" (click)="openModal(modalContent)">
          <i class="dx-icon-add"></i>
          <p class="add-text">Yeni Hesap Ekle</p>
       </div>
@@ -23,8 +23,8 @@
       [pager]="{ visible: false, showPageSizeSelector: false, allowedPageSizes: 'auto' }">
       <dxo-scrolling [useNative]="true">
       </dxo-scrolling>
-      <dxi-column dataField="Sosyal Medya Linki" [allowSearch]="true"></dxi-column>
-      <dxi-column dataField="Sosyal Medya Adı" [allowSearch]="true"></dxi-column>
+      <dxi-column [width]="400" dataField="Sosyal Medya Linki" [allowSearch]="true"></dxi-column>
+      <dxi-column [width]="280" dataField="Sosyal Medya Adı" [allowSearch]="true"></dxi-column>
       <dxi-column dataField="Açıklama" sortingMethod="none" [allowSearch]="true"></dxi-column>
    </dx-data-grid>
    <div class="table-pagination-wrapper">
@@ -38,7 +38,6 @@
                </div>
                <div class="icon-down-wrapper" (click)="decreasePageSize()">
                   <img src="../../../assets/svg/arrow_down.svg" alt="Arrow Down SVG">
-                  <!-- <fa-icon class="icon-down" [icon]="faDown"></fa-icon> -->
                </div>
             </div>
          </div>
@@ -52,3 +51,7 @@
       </div>
    </div>
 </div>
+
+<ng-template #modalContent>
+   <p>anam</p>
+</ng-template>
