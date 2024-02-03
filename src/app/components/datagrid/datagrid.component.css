@@ -1,6 +1,210 @@
 :host {
+   flex: 1;
    display: block;
-   height: 100%;
+   box-sizing: border-box;
    width: 100%;
-   background-color: linear-gradient(180deg, rgba(239,242,255,1) 0%, rgba(239,242,255,0) 100%);
+   padding: 4.0625rem 4.5625rem 4.5625rem 4.5625rem;
+   background: rgb(239, 242, 255);
+   background: linear-gradient(180deg,
+         rgba(239, 242, 255, 1) 0%,
+         rgba(232, 236, 255, 0.4) 100%)
+}
+
+.table-wrapper {
+   height: 100%;
+}
+
+.table-functions-wrapper {
+   margin-bottom: 0.75rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+}
+
+.left-side-wrapper {
+   display: flex;
+   gap: 9px;
+}
+
+.search-box {
+   display: flex;
+   border-radius: 39px;
+   background: #FFF;
+}
+
+.search-input {
+   all: unset;
+   width: 380px;
+   height: 42px;
+   text-indent: 40px;
+
+   color: #8C8C8C;
+   font-family: 'Inter', sans-serif;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 300;
+   line-height: normal;
+}
+
+.search-icon-button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 45px;
+   height: 42px;
+
+   background-color: #744BFC;
+   color: white;
+
+   border: none;
+   border-top-right-radius: 50%;
+   border-bottom-right-radius: 50%;
+
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+}
+
+.search-icon-button:active {
+   transform: translateX(0.18rem);
+
+}
+
+.dx-icon-search {
+   font-size: 24px;
+}
+
+.filter {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 49px;
+   height: 42px;
+
+   border-radius: 29px;
+   background: #FFF;
+
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+}
+
+.filter:active {
+   transform: translateY(0.18rem);
+}
+
+.dx-icon-filter {
+   font-size: 19px;
+   color: #744BFC;
+}
+
+
+.add-button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 14px;
+
+   width: 175px;
+   height: 42px;
+   border-radius: 39px;
+   background: #744BFC;
+   color: white;
+
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+}
+
+.add-button:active {
+   transform: translateY(0.18rem);
+}
+
+.dx-icon-add {
+   font-size: 18px;
+   color: white;
+}
+
+.add-text {
+   color: #FFF;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+}
+
+.table-pagination-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   margin-top: 23px;
+
+}
+
+.left-pagination-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 23px;
+}
+
+.pagination-amount-selector-label {
+   
+   color: #744BFC;
+   font-size: 12px;
+   font-weight: 600;
+}
+
+.pagination-amount-selector {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 90px;
+   height: 37px;
+
+   color: #000;
+   font-size: 10px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+
+   border-radius: 39px;
+   border: 1px solid #CFC0FF;
+   background: #FFF;
+}
+
+.arrow-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 1px;
+}
+
+.dx-icon-spinup, .dx-icon-spindown {
+   font-size: 28px;
+   color: #744BFC;
+   width: 7px;
+   height: 9.972px;
+}
+
+.paginator-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 12px;
+}
+
+.dx-icon-chevronleft, .dx-icon-chevronnext {
+   font-size: 16px;
+   font-weight: 700;
+   color: #744BFC;
+}
+
+.divider {}
+
+.current-page {
+   font-size: 16px;
+   font-weight: 700;
+   color: #744BFC;
 }

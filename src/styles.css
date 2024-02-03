@@ -12,4 +12,48 @@ html,
 body {
    height: auto;
    width: 100vw;
+   display: flex;
 }
+
+.dx-datagrid {
+   border-radius: 10px;
+   /* Set your desired border radius */
+   overflow: hidden;
+   /* Ensure content doesn't overflow the rounded corners */
+}
+
+.dx-datagrid .dx-row-alt>td {
+   background-color: #eff2ff;
+}
+
+.dx-datagrid-nowrap .dx-header-row>td>.dx-datagrid-text-content {
+   color: black;
+   font-weight: 600;
+   font-size: 13px;
+}
+
+.dx-datagrid .dx-row > td {
+   padding-top: 33px;
+   padding-bottom: 18px;
+   padding-left: 57px;
+}
+
+.dx-datagrid-rowsview .dx-row {
+   font-size: 12px;
+   font-family: 'Inter', sans-serif;
+   color: black;
+}
+
+.dx-datagrid .dx-sort-down, .dx-datagrid .dx-sort-up  {
+   color: #744BFC;
+   font-size: 18px;
+   font-weight: 900;
+}
+
+
+/* .dx-datagrid-table .dx-data-row.dx-state-hover:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) > td:not(.dx-focused) {
+   box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.11);
+} */
+/* .dx-datagrid-rowsview .dx-row-focused.dx-data-row > td:not(.dx-focused) {
+   background-color: darkorchid;
+} */

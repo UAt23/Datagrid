@@ -1,2 +1,44 @@
-<dx-data-grid [dataSource]="tableData" keyExpr="EmployeeID">
-</dx-data-grid>
+<div class="table-wrapper">
+   <div class="table-functions-wrapper">
+      <div class="left-side-wrapper">
+         <div class="search-box">
+            <input class="search-input" placeholder="Search objects..." type="text">
+            <button class="search-icon-button">
+               <i class="dx-icon-search"></i>
+            </button>
+         </div>
+         <div class="filter">
+            <i class="dx-icon-filter"></i>
+         </div>
+      </div>
+      <div class="add-button">
+         <i class="dx-icon-add"></i>
+         <p class="add-text">Yeni Hesap Ekle</p>
+      </div>
+   </div>
+   <dx-data-grid [ngStyle]="{'height': '28rem'}" id="gridContainer" #grid [dataSource]="tableData"
+      [showColumnLines]="true" [showRowLines]="false" [showBorders]="true" [rowAlternationEnabled]="true"
+      [hoverStateEnabled]="true">
+      <dxo-scrolling [useNative]="true">
+      </dxo-scrolling>
+   </dx-data-grid>
+   <div class="table-pagination-wrapper">
+      <div class="left-pagination-wrapper">
+         <p class="pagination-amount-selector-label">Show:</p>
+         <div class="pagination-amount-selector">
+            <p class="row-amount-text">4 rows</p>
+            <div class="arrow-wrapper">
+               <i class="dx-icon-spinup"></i>
+               <i class="dx-icon-spindown"></i>
+            </div>
+         </div>   
+      </div>
+      <div class="paginator-wrapper">
+         <i class="dx-icon-chevronleft"></i>
+         <input type="number">
+         <p class="divider">of</p>
+         <p class="current-page"></p>
+         <i class="dx-icon-chevronnext"></i>
+      </div>
+   </div>
+</div>
