@@ -32,7 +32,7 @@ body {
    font-size: 13px;
 }
 
-.dx-datagrid .dx-row > td {
+.dx-datagrid .dx-row>td {
    padding-top: 33px;
    padding-bottom: 18px;
    padding-left: 57px;
@@ -44,7 +44,7 @@ body {
    color: black;
 }
 
-.dx-datagrid .dx-sort-down, .dx-datagrid .dx-sort-up  {
+.dx-datagrid .dx-sort-down, .dx-datagrid .dx-sort-up {
    color: #744BFC;
    font-size: 18px;
    font-weight: 900;
@@ -57,3 +57,22 @@ body {
 /* .dx-datagrid-rowsview .dx-row-focused.dx-data-row > td:not(.dx-focused) {
    background-color: darkorchid;
 } */
+
+::-webkit-scrollbar {
+   width: 20px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d6dee1;
+   border-radius: 20px;
+   border: 6px solid transparent;
+   background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background-color: #a8bbbf;
+}
