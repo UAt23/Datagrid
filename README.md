@@ -26,11 +26,11 @@ Make sure you have the following tools installed on your machine:
 
 ### Installation
 
-1. **Install Node.js and MongoDB**
+1. **Install Node.js**
    
 2. **Install Angular CLI:**
    ```bash
-   npm i @angular/cli@17.0.0
+   npm i -g @angular/cli@17.0.0
    ```
 
 3. **Clone the repository:**
