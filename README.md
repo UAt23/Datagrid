@@ -77,5 +77,6 @@ It is made responsive for general device screens (can be checked on Chrome Devto
 List and briefly describe the main dependencies of your project.
 
 - **Angular**: A platform for building applications with Angular.
+- **Angular CDK**: The Component Dev Kit (CDK) is a set of tools that implement common interaction patterns whilst being unopinionated about their presentation.
 - **DevExtreme**: UI components library.
-- ...
+- **FontAwesome**: Icon library.
