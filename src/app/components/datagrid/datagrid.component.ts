@@ -73,6 +73,7 @@ export class DatagridComponent implements OnInit {
       'Açıklama': form.value['description']
     };
     this.tableData = [...this.tableData, newRow];
+    this.tableService.updateMockData(this.tableData);
     this.currentPageIndex = this.totalNumberOfPages - 1;
     this.notificationService.showNotification('Yeni medya tabloya eklendi', 'success');
     this.modalService.closeModal(form);
@@ -84,8 +85,6 @@ export class DatagridComponent implements OnInit {
   }
 
   updatePaginationData(event: PaginationDataModel) {
-    console.log(event);
-    
     this.currentPageIndex = event.currentPageIndex;
     this.currentPageSize = event.currentPageSize;
     this.totalNumberOfPages = event.totalNumberOfPages;
