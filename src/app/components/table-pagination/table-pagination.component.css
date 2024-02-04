@@ -45,7 +45,7 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   gap: 3px;
+   gap: 6px;
 }
 
 .icon-up-wrapper, .icon-down-wrapper {
@@ -57,9 +57,8 @@
 }
 
 .icon-up, .icon-down {
-   font-size: 18px;
    color: #744BFC;
-   height: 18px;
+   height: 10px;
 }
 
 .paginator-wrapper {

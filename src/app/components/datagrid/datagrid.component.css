@@ -54,7 +54,7 @@
 
    .dx-widget {
       font-size: 12px;
-      height: 42rem;
+      height: 36rem;
    }
 }
 
@@ -77,9 +77,21 @@
       height: 36rem;
    }
 }
+@media (max-width: 480px) {
+   :host {
+      flex: 1;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 3.0625rem 0.9625rem 2.5625rem 0.9625rem;
+      background: rgb(239, 242, 255);
+      background: linear-gradient(180deg,
+            rgba(239, 242, 255, 1) 0%,
+            rgba(232, 236, 255, 0.4) 100%)
+   }
 
-@media (min-width: 1200px) {}
-
-@media (orientation: landscape) {}
-
-@media (orientation: portrait) {}
+   .dx-widget {
+      font-size: 12px;
+      height: 36rem;
+   }
+}
