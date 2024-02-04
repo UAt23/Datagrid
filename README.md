@@ -41,7 +41,7 @@ Make sure you have the following tools installed on your machine:
 4. **Change into the project directory:**
 
    ```bash
-   cd datagrid
+   cd Datagrid
    ```
 
 5. **Install dependencies:**
