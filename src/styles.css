@@ -23,7 +23,6 @@ body {
    width: 100%;
    height: 100%;
    background-color: rgba(0, 0, 0, 0.5);
-   /* Semi-transparent black background */
    display: flex;
    align-items: center;
    justify-content: center;
@@ -48,9 +47,7 @@ body {
 
 .dx-datagrid {
    border-radius: 10px;
-   /* Set your desired border radius */
    overflow: hidden;
-   /* Ensure content doesn't overflow the rounded corners */
 }
 
 .dx-datagrid .dx-row-alt>td {

@@ -1,15 +1,15 @@
 <div class="table-wrapper">
    <table-functions [tableData]="tableData" (displayedData)="onSearch($event)" (openModalClicked)="openModal($event)"></table-functions>
-   <dx-data-grid #grid [ngStyle]="{'height': '28rem'}" id="gridContainer" [dataSource]="displayedData"
+   <dx-data-grid #grid id="gridContainer" [dataSource]="displayedData"
       [showColumnLines]="true" [showRowLines]="false" [showBorders]="true" [rowAlternationEnabled]="true"
-      [hoverStateEnabled]="true"
+      [hoverStateEnabled]="true" [columnAutoWidth]="true"
       [paging]="{pageIndex: currentPageIndex, pageSize: currentPageSize}"
       [pager]="{ visible: false, showPageSizeSelector: false, allowedPageSizes: 'auto' }">
       <dxo-scrolling [useNative]="true">
       </dxo-scrolling>
-      <dxi-column [width]="400" dataField="Sosyal Medya Linki" [allowSearch]="true"></dxi-column>
-      <dxi-column [width]="280" dataField="Sosyal Medya Adı" [allowSearch]="true"></dxi-column>
-      <dxi-column dataField="Açıklama" sortingMethod="none" [allowSearch]="true"></dxi-column>
+      <dxi-column [width]="400" dataField="Sosyal Medya Linki" ></dxi-column>
+      <dxi-column [width]="280" dataField="Sosyal Medya Adı" ></dxi-column>
+      <dxi-column dataField="Açıklama" sortingMethod="none" ></dxi-column>
    </dx-data-grid>
 
    <table-pagination [tableLength]="tableData.length" (emitPaginationData)="updatePaginationData($event)"></table-pagination>

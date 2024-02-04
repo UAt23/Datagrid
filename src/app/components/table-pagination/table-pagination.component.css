@@ -115,3 +115,110 @@ input::-webkit-inner-spin-button {
 input[type=number] {
    -moz-appearance: textfield;
 }
+
+/* Tablet styles */
+@media (max-width: 820px) {
+
+   .left-pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+   }
+
+   .pagination-amount-selector-label {
+      color: #744BFC;
+      font-size: 16px;
+      font-weight: 600;
+   }
+   
+   .pagination-amount-selector {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+   
+      width: 120px;
+      height: 48px;
+   
+      color: #000;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+   
+      border-radius: 39px;
+      border: 1px solid #CFC0FF;
+      background: #FFF;
+   }
+   
+   .icon-up-wrapper, .icon-down-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      height: 18px;
+   }
+   
+   .icon-up, .icon-down {
+      color: #744BFC;
+      height: 16px;
+   }
+   
+   .paginator-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+   }
+   
+   .dx-icon-chevronleft, .dx-icon-chevronnext {
+      font-size: 22px;
+      font-weight: 700;
+      color: #744BFC;
+      cursor: pointer;
+   }
+   
+   .dx-icon-chevronleft.passive, .dx-icon-chevronnext.passive {
+      font-size: 22px;
+      font-weight: 700;
+      color: #C9C9C9;
+      cursor: not-allowed;
+   }
+   
+   .current-page {
+      width: 32px;
+      font-size: 18px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid #EAEAEA;
+      background: #FFF;
+      text-align: center;
+   }
+   
+   .divider {
+      color: #C9C9C9;
+      font-size: 18px;
+      font-weight: 400;
+   }
+   
+   .total-page-number {
+      font-size: 22px;
+      font-weight: 500;
+      color: #744BFC;
+   }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+   
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (orientation: landscape) {
+}
+
+@media (orientation: portrait) {
+}

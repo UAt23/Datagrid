@@ -1,6 +1,6 @@
-<a href="https://rastmobile.com/en" target="_blank">
-   <img src="../../../assets/image/companyLogo.png" alt="Company Logo">
-</a>
+<div class="menu-close">
+   <fa-icon class="menu-button" [icon]="faBarsStaggered" (click)="toggleSidebar()"></fa-icon>
+</div>
 <div *ngIf="Breakpoints.Medium" class="navigation-buttons-wrapper">
    <a href="https://rastmobile.com/en/about" target="_blank">Hakkımızda</a>
    <a href="https://rastmobile.com/en/products/jury-competition-software" target="_blank">Jüri - Yarışma Yazılımı</a>
@@ -20,9 +20,4 @@
    <a href="https://www.linkedin.com/company/rastmobile/" target="_blank">
       <fa-icon class="media-button" [icon]="faLinkedIn"></fa-icon>
    </a>
-</div>
-<div class="menu-button-wrapper">
-   <div *ngIf="!isMenuOpen">
-      <fa-icon class="menu-button" [icon]="faBars" (click)="toggleMenu()"></fa-icon>
-   </div>
 </div>

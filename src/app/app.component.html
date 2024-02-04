@@ -1,6 +1,7 @@
 <div class="layout-wrapper">
   <navbar></navbar>
   <datagrid></datagrid>
+  <side-menu [@slideInOut]="isSidebarOpen ? 'true' : 'false'"></side-menu>
 </div>
 <app-notification *ngFor="let notification of notifications; let i = index" [message]="notification.message"
   [context]="notification.context"></app-notification>

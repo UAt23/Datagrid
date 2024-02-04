@@ -10,7 +10,6 @@ import { DatagridComponent } from './components/datagrid/datagrid.component';
 
 import { DxDataGridModule } from 'devextreme-angular';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
 import { TableFunctionsComponent } from './components/table-functions/table-functions.component';
 import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
@@ -31,7 +30,6 @@ const SERVICES = [];
     ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
-    FontAwesomeModule,
     DxDataGridModule,
   ],
   providers: [],
