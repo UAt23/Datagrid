@@ -1,6 +1,7 @@
 # Datagrid Angular App
 
 This project is an Angular application that leverages the DevExtreme library to create powerful data grids.
+The steps I took while developing the application can be find inside Steps.md file inside the project files.
 
 ## Table of Contents
 
