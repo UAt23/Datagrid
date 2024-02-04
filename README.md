@@ -19,8 +19,9 @@ This project is an Angular application that leverages the DevExtreme library to 
 
 Make sure you have the following tools installed on your machine:
 
+- git version 2.34.1.windows.1 or higher
 - Node.js: [v18.13.0](https://nodejs.org/en/download/releases/) (Recommended using [NVM](https://github.com/nvm-sh/nvm))
-- npm: [v8.19.3](https://www.npmjs.com/package/npm/v/8.19.3)
+- npm: [v8.19.3](https://www.npmjs.com/package/npm/v/8.19.3) or higher
 
 
 ### Installation
