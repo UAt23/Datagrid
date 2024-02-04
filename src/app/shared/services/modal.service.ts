@@ -39,7 +39,7 @@ export class ModalService {
     const portal = new ComponentPortal(ModalComponent, null, this.createInjector(config.contentTemplate));
 
     const componentRef = this.overlayRef.attach(portal);
-    componentRef.instance.form = config.form.value;
+    componentRef.instance.form = config.form;
     componentRef.instance.contentTemplate = config.contentTemplate;
     componentRef.instance.title = config.title || 'Default Title';
     componentRef.instance.closeButton = config.closeButton || 'Close';

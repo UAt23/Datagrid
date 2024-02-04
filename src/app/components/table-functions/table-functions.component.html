@@ -1,0 +1,35 @@
+<div class="table-functions-wrapper">
+   <div class="left-side-wrapper">
+      <form [formGroup]="searchBoxForm" class="search-box">
+         <input formControlName="searchText" class="search-input"  placeholder="Search objects..." type="text">
+         <button class="search-icon-button">
+            <i class="dx-icon-search"></i>
+         </button>
+      </form>
+      <div class="filter">
+         <fa-icon class="filter-icon" [icon]="faFilter"></fa-icon>
+      </div>
+   </div>
+   <div class="add-button" (click)="openModal(modalContent)">
+      <i class="dx-icon-add"></i>
+      <p class="add-text">Yeni Hesap Ekle</p>
+   </div>
+</div>
+
+<ng-template #modalContent>
+   <form [formGroup]="modalForm" class="modal-content-wrapper">
+      <div class="filed-wrapper">
+         <p class="field-title">Sosyal Medya Linki</p>
+         <input formControlName="link" type="text" class="field-input">
+      </div>
+      <div class="filed-wrapper">
+         <p class="field-title">Sosyal Medya Adı</p>
+         <input formControlName="name" type="text" class="field-input">
+      </div>
+      <div class="filed-wrapper">
+         <p class="field-title">Açıklama</p>
+         <input formControlName="description" type="text" class="field-input">
+      </div>
+
+   </form>
+</ng-template>
