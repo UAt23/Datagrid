@@ -12,6 +12,7 @@ import { DxDataGridModule } from 'devextreme-angular';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
+import { TableFunctionsComponent } from './components/table-functions/table-functions.component';
 
 const COMPONENTS = [NavbarComponent, DatagridComponent];
 const SERVICES = [];
@@ -20,6 +21,7 @@ const SERVICES = [];
   declarations: [
     AppComponent,
     ...COMPONENTS,
+    TableFunctionsComponent,
   ],
   imports: [
     BrowserModule,

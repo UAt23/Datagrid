@@ -30,19 +30,17 @@
   height: 100%;
 }
 
+
 .media-button {
   display: flex;
   justify-content: center;
   align-items: center;
   
-  height: 1.125rem;
-  width: 1.125rem;
-  background-color: #744BFC;
-  border-radius: 1.95px;
-}
-
-.icon {
+  font-size: 18px;
   background-color: #ffffff;
+  color: #744BFC;
+  border-radius: 1.95px;
+  cursor: pointer;
 }
 
 a {

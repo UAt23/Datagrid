@@ -19,17 +19,11 @@ export class ModalComponent {
   @Input() height: string = 'auto';
 
   errorVisible = false;
-  emptyFormFields = {
-    link: '',
-    name: '',
-    description: ''
-  }
 
   constructor(private modalService: ModalService) {}
 
   closeModal() {
-    this.form.setValue(this.emptyFormFields)
-    this.modalService.closeModal();
+    this.modalService.closeModal(this.form);
   }
 
   onOkayClicked() {

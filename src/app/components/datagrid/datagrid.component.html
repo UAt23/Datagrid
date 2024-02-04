@@ -1,4 +1,5 @@
 <div class="table-wrapper">
+
    <div class="table-functions-wrapper">
       <div class="left-side-wrapper">
          <form [formGroup]="myForm" class="search-box">
@@ -16,6 +17,7 @@
          <p class="add-text">Yeni Hesap Ekle</p>
       </div>
    </div>
+
    <dx-data-grid #grid [ngStyle]="{'height': '28rem'}" id="gridContainer" [dataSource]="displayedData"
       [showColumnLines]="true" [showRowLines]="false" [showBorders]="true" [rowAlternationEnabled]="true"
       [hoverStateEnabled]="true"
@@ -27,6 +29,7 @@
       <dxi-column [width]="280" dataField="Sosyal Medya Adı" [allowSearch]="true"></dxi-column>
       <dxi-column dataField="Açıklama" sortingMethod="none" [allowSearch]="true"></dxi-column>
    </dx-data-grid>
+
    <div class="table-pagination-wrapper">
       <div class="left-pagination-wrapper">
          <p class="pagination-amount-selector-label">Show:</p>
@@ -50,6 +53,7 @@
          <i class="dx-icon-chevronnext" [ngClass]="{'passive': this.currentPageIndex === (this.totalNumberOfPages - 1)}" (click)="nextPage()"></i>
       </div>
    </div>
+   
 </div>
 
 <ng-template #modalContent>

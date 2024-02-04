@@ -4,6 +4,7 @@ import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { ModalComponent } from '../components/modal/modal.component';
 import { Subject } from 'rxjs';
 import { ModalConfig } from '../models/modal-config.model';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -18,41 +19,54 @@ export class ModalService {
 
   submit$ = this.submitSubject.asObservable();
 
-  constructor(private overlay: Overlay, private injector: Injector) {}
+  emptyFormFields = {
+    link: '',
+    name: '',
+    description: ''
+  }
+
+  constructor(private overlay: Overlay, private injector: Injector) { }
 
   openModal(config: ModalConfig) {
-    this.closeModal(); // Close any existing modal
-  
+
     const overlayConfig: OverlayConfig = {
       hasBackdrop: config.closeOnBackdropClick !== false, // Close on backdrop click unless explicitly set to false
       backdropClass: 'modal-backdrop',
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
     };
-  
+
     this.overlayRef = this.overlay.create(overlayConfig);
     const portal = new ComponentPortal(ModalComponent, null, this.createInjector(config.contentTemplate));
-  
+
     const componentRef = this.overlayRef.attach(portal);
-    componentRef.instance.form = config.form;
+    componentRef.instance.form = config.form.value;
     componentRef.instance.contentTemplate = config.contentTemplate;
     componentRef.instance.title = config.title || 'Default Title';
     componentRef.instance.closeButton = config.closeButton || 'Close';
     componentRef.instance.okayButton = config.openButton || 'Open';
     componentRef.instance.width = config.width || 'auto';
     componentRef.instance.height = config.height || 'auto';
-  
+
     this.overlayRef.backdropClick().subscribe(() => {
       if (config.closeOnBackdropClick !== false) {
-        this.closeModal();
+        this.closeModal(config.form);
       }
     });
   }
 
-  closeModal() {
+  closeModal(form: FormGroup) {
     if (this.overlayRef) {
-      this.overlayRef.detach();
+      form.setValue(this.emptyFormFields);
+      this.overlayRef.dispose();
       this.modalClosedSubject.next();
+      this.submitSubject.complete();
+      this.restoreSubmitSubject();
     }
+  }
+
+  restoreSubmitSubject() {
+    this.submitSubject = new Subject<void>();
+    this.submit$ = this.submitSubject.asObservable();
   }
 
   triggerSubmit() {

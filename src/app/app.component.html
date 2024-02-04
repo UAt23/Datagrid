@@ -2,3 +2,5 @@
   <navbar></navbar>
   <datagrid></datagrid>
 </div>
+<app-notification *ngFor="let notification of notifications; let i = index" [message]="notification.message"
+  [context]="notification.context"></app-notification>

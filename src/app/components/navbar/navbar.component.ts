@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { faLinkedin, faSquareBehance, faSquareInstagram, faSquareYoutube,  } from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'navbar',
@@ -8,4 +10,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './navbar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent { }
+export class NavbarComponent { 
+  faYoutube = faSquareYoutube
+  faInstagram = faSquareInstagram;
+  faBehance = faSquareBehance;
+  faLinkedIn = faLinkedin;
+}

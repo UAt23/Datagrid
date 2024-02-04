@@ -1,19 +1,20 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
 import { TableData } from '../../models/table-data.model';
 import { TableService } from '../../services/table.service';
 import { faCaretDown, faCaretUp, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { ModalService } from '../../shared/services/modal.service';
 import { ModalConfig } from '../../shared/models/modal-config.model';
+import { NotificationService } from '../../shared/services/notification.service';
+
 @Component({
   selector: 'datagrid',
   templateUrl: './datagrid.component.html',
-  styleUrl: './datagrid.component.css'
+  styleUrls: ['./datagrid.component.css']
 })
-export class DatagridComponent implements OnInit {
+export class DatagridComponent implements OnInit, OnDestroy {
   @ViewChild('grid', { static: false }) grid!: DxDataGridComponent;
   tableData: TableData[] = [];
   displayedData: TableData[] = [];
@@ -21,43 +22,54 @@ export class DatagridComponent implements OnInit {
   faFilter = faFilter;
   faUp = faCaretUp;
   faDown = faCaretDown;
-
+  
   searchQuery: string = '';
   currentPageSize: number = 4;
   currentPageIndex: number = 0;
-  get totalNumberOfPages() {
-    return Math.ceil(this.tableData.length / this.currentPageSize);
-  }
 
   private destroy$ = new Subject<void>();
   myForm!: FormGroup;
-  modalForm: FormGroup = this.fb.group({
-    link: ['', Validators.required],
-    name: ['', Validators.required],
-    description: ['', Validators.required]
-  });
+  modalForm!: FormGroup;
 
   constructor(
     private tableService: TableService,
     private fb: FormBuilder,
     private modalService: ModalService,
+    private notificationService: NotificationService,
   ) {
     this.tableData = this.tableService.getTableData();
-    this.myForm = this.fb.group({
-      searchText: ['']
-    });
   }
 
   ngOnInit() {
+    this.initializeForms();
     this.updateDisplayedData();
+    this.setupSearchSubscription();
+  }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  initializeForms() {
+    this.myForm = this.fb.group({
+      searchText: ['']
+    });
+
+    this.modalForm = this.fb.group({
+      link: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  setupSearchSubscription() {
     this.myForm.get('searchText')?.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe((textValue: string) => {
-      const searchQuery = textValue
-      this.searchTableByText(searchQuery)
+      this.searchTableByText(textValue);
     });
   }
 
@@ -67,33 +79,6 @@ export class DatagridComponent implements OnInit {
         value.toString().toLowerCase().includes(input.toLowerCase())
       )
     );
-  }
-
-
-  increasePageSize() {
-    this.currentPageSize++;
-  }
-
-  decreasePageSize() {
-    if (this.currentPageSize > 4) {
-      this.currentPageSize--;
-    }
-  }
-
-  setCurrentPage(event: any) {
-    event.data && (this.currentPageIndex = event.data - 1)
-  }
-
-  previousPage() {
-    if (this.currentPageIndex > 0) {
-      this.currentPageIndex--;
-    }
-  }
-
-  nextPage() {
-    if (this.currentPageIndex < (this.totalNumberOfPages - 1)) {
-      this.currentPageIndex++;
-    }
   }
 
   openModal(contentTemplate: TemplateRef<any>) {
@@ -107,18 +92,20 @@ export class DatagridComponent implements OnInit {
       height: '406px',
       closeOnBackdropClick: false
     };
+    
     this.modalService.submit$.subscribe(() => {
       this.onSubmit();
     });
+    
     this.modalService.openModal(modalConfig);
   }
 
   onSubmit() {
     if (this.modalForm.valid) {
-      const formValues = this.modalForm.value;
-      console.log('Form Values:', formValues);
-      this.modalService.closeModal();
-    } 
+      this.addRow();
+    } else {
+      this.notificationService.showNotification('Lütfen tüm alanları doldurup tekrar deneyin.', 'error')
+    }
   }
 
   addRow() {
@@ -128,16 +115,48 @@ export class DatagridComponent implements OnInit {
       'Açıklama': this.modalForm.value['description']
     };
     this.tableData = [...this.tableData, newRow];
+    this.currentPageIndex = this.totalNumberOfPages - 1;
+    this.notificationService.showNotification('Yeni medya tabloya eklendi', 'success');
+    this.modalService.closeModal(this.modalForm);
     this.updateDisplayedData();
   }
 
   updateDisplayedData() {
-    this.displayedData = [...this.tableData]
+    this.displayedData = [...this.tableData];
   }
 
+  // * PAGINATION ----------------------------------------------------------------
+  get totalNumberOfPages() {
+    return Math.ceil(this.tableData.length / this.currentPageSize);
+  }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+  increasePageSize() {
+    this.currentPageSize++;
+    if((this.totalNumberOfPages - 1) < this.currentPageIndex) {
+      console.log('Increasing page size')
+      this.currentPageIndex = this.totalNumberOfPages - 1
+    };
+  }
+
+  decreasePageSize() {
+    if (this.currentPageSize > 4) {
+      this.currentPageSize--;
+    }
+  }
+
+  setCurrentPage(event: any) {
+    event.data && (this.currentPageIndex = event.data - 1);
+  }
+
+  previousPage() {
+    if (this.currentPageIndex > 0) {
+      this.currentPageIndex--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPageIndex < (this.totalNumberOfPages - 1)) {
+      this.currentPageIndex++;
+    }
   }
 }
